@@ -430,12 +430,13 @@
                     var cmdCharsList = '<b class="cmd-c hovered">/</b> ';
                     for (var i = 0; i < cmdModeChars.length; i++) cmdCharsList += '<b class="cmd-c">' + cmdModeChars[i] + '</b> ';
                     lastUser = null;
-                    htmlToSelf('<b>/name, /nick</b> ' +
+                    htmlToSelf('<b>/name</b> ' +
                         '<br><b>/gif</b> (search via giphy) ' +
                         '<br><b>/sticker</b> (search via giphy) ' +
                         '<br><b>/giflate</b> (translate via giphy) ' +
                         '<br><b>/sticklate</b> (translate via giphy) ' +
                         '<br><b>/room, /r</b> (switch to room) ' +
+                        '<br><b>/seek, /s</b> m:s (or &#177;int) ' +
                         '<br><b>/snap</b> 0-100 (quality) ' 
                         //+'<br><b>/master</b> '
                         , ' Available commands');
