@@ -17,45 +17,6 @@
     <script src="JQ.js"></script>
     <script src="jquery.achexws.js"></script>
     <script src="webtorrent.min.js"></script>
-    <script>
-        $.fn.extend({
-            animateCss: function(animationName) {
-                var animationEnd = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
-                this.addClass('animated ' + animationName).one(animationEnd, function() {
-                    $(this).removeClass('animated ' + animationName);
-                });
-            }
-        });
-        var backgroundCs = [{
-            cname: 'black_bg'
-        }, {
-            cname: 'cinema_bg'
-        }, {
-            cname: 'brokkoli_bg'
-        }, {
-            cname: 'cosmos_bg'
-        }, {
-            cname: 'black-scales_bg'
-        }, {
-            cname: 'diagmonds_bg'
-        }];
-
-        function setBg(newBgNum) {
-            if (typeof(window.localStorage.currBg) === 'undefined' ||
-                isNaN(window.localStorage.currBg) ||
-                typeof(backgroundCs[window.localStorage.currBg]) !== 'object') {
-
-                window.localStorage.currBg = 1;
-            }
-
-            if (isNaN(newBgNum) || typeof(backgroundCs[newBgNum]) !== 'object') {
-                newBgNum = window.localStorage.currBg;
-            } else window.localStorage.currBg = newBgNum;
-
-            document.getElementsByTagName('html')[0].className = backgroundCs[newBgNum].cname;
-        }
-    </script>
-
 </head>
 
 <body onload="loadInit()">
@@ -121,8 +82,7 @@
         }
 
         function loadInit() {
-            setBg();
-            setPoster();
+            
 
             TheVideoController.init('the-video');
 
@@ -293,8 +253,8 @@
 
         $.achex({
             //dbg: true,
-            username: "streamApp@1013",
-            password: "Test123",
+            username: username,
+            password: window.localStorage.password || '*',
             reconnect: 3000,
             logo: {
                 canvas: 'logo',
