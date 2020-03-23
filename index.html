@@ -58,7 +58,7 @@
         var channels = [];
         var channel = window.location.hash.length > 1 ? window.location.hash.replace(/\W+/g, "") : 'lobby';
         if (window.location.hash.length < 2) window.location.hash = channel;
-        var bcChannel = 'cinema-' + channel;
+        var bcChannel = 'cinemas-' + channel;
 
         var username = window.localStorage.username || '';
         var firstRun = false;
