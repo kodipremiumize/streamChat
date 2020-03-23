@@ -379,9 +379,16 @@ i.sys-msg>b:hover {
     border: 0;
     border-radius: 7px;
     outline: 0 none;
-    width: 400px;
-    padding-bottom: 15px;
+    width: 95vw;
+    margin-left:4vh;
+    margin-top: 10px;
+    margin-bottom:8px;
     color: #ededed;
+}
+	
+.skip{
+	display:none;
 }
 
 }
+
