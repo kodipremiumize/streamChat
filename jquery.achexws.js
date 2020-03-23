@@ -120,7 +120,7 @@ function AchexWs(obj)
     this.port = (obj.port !== undefined) ? obj.port : null;
     this.reconnect = obj.reconnect||3000;
 
-    this.url = obj.url||'wss://connect.websocket.in/v2/8792?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6ImIzOTI5NGI4NmNjOWY4ZGViNmU2OTcxMTUxY2FjNWY3NzUyZmYyMzQzMmI5YjdhOTA5YjBiMWFkMjMyYjE3ZmU4ZThiZDA4MjMzMzM0YjI4In0.eyJhdWQiOiI4IiwianRpIjoiYjM5Mjk0Yjg2Y2M5ZjhkZWI2ZTY5NzExNTFjYWM1Zjc3NTJmZjIzNDMyYjliN2E5MDliMGIxYWQyMzJiMTdmZThlOGJkMDgyMzMzMzRiMjgiLCJpYXQiOjE1ODQ5NTM1MTYsIm5iZiI6MTU4NDk1MzUxNiwiZXhwIjoxNjE2NDg5NTE2LCJzdWIiOiI3MTYiLCJzY29wZXMiOltdfQ.LM_R4TNcUZvGl9cMYnobYOl_sFi8wwYwowIst74-3LnzrZTKXpIXGAwWVj0l26lDcKpOTM4ZK93sxzuWtQYS0iFMpjAZHyl_IS03nEDNphO13zqfg1rsSz6QEzkBjzK58sCxn4s9K-_35_wWHNOWLjzQaefsXr7MWuIEmxeMunplNj0WUtBhbicxeMWg03yKy-BUDoovm562x9cjcxZPYmXJiPG9xV_fASLu1bKg6kMMt-lHDdVkK2vh7Rk-JpCaltNbUNSFhKT-coQnGBnaXxwQmWIJmDx4UP-2aCe30VTSuOYbeClSrYC1AeYqLMVcxMaBBfQvnMUgKRf9unhPKLgqiReQ0K7MLDF8FzJWNPgXMtGdkPosuvA36mkLmZfkKRrh8v-9lQj9GeDRkl1OqesVEJH5Agyax7-No2xibnXuFBD1Z5HcBfv3VAWAKpj0DeMlyTPmpn8xrDl_M-EVwAXiauLKEeq5bDf5R73PsMBlJNke8mtmJsNao5f4eaKBcrZRs5eC5-aOy1Af0iuNbjoiHvgBsDRVTEz-VSWJJ3XC5POHCwGX9yH_iBYDBfuMoyUJE8y_kvDCVOY1yds14q4FiaUJwnkg9rPBRZx4hpGzx2rvje0nSUbyTbFzaPDC0LP3vobLgciDf3n5y17oGy7PESSn_2QZoC3WXQAKNN8';
+    this.url = obj.url||'wss://cloud.achex.ca';
 
     this.callback =(typeof( obj.callback ) === 'function') ? obj.callback : function(){console.log('default callback handler')};
     this.opencallback = (typeof(obj.opencallback) === 'function') ? obj.opencallback : function(){console.log('default opencallback handler')};
@@ -367,6 +367,32 @@ function DisplayFacebookLoginModal(display=true)
     }
 }
 
+function checkLoginState() 
+{
+    console.log('check fb login state');
+    FB.getLoginStatus(function(response){
+        if( response.status ==='connected' )
+        {
+            DisplayFacebookLoginModal(false);
+            $.achex.achexFbAuthObj = {
+                authToken : response.authResponse.accessToken,
+                userID : response.authResponse.userID
+            };
+            //this.achex = new AchexWs(obj);
+            // check response data
+
+            FB.api('/me', function(response) {
+                $.achex.achexFbAuthObj.authfacebook = response.name;
+                var obj = jQuery.achexdata;
+                obj.achexFbAuthObj = $.achex.achexFbAuthObj;
+                this.achex = new AchexWs(obj);
+            });
+        }else{
+            DisplayFacebookLoginModal(true);
+        }
+    });
+}
+/*==============================================*/
 
 
 ( function ( $ ) {
@@ -375,7 +401,15 @@ function DisplayFacebookLoginModal(display=true)
         {
             this.achexdata = obj;
             //console.log('Getting script');
-
+            window.fbAsyncInit = function() {
+                FB.init({
+                    appId      : '1765202877069955',
+                    cookie    : true,  // enable cookies to allow the server to access the session
+                    xfbml      : true,  // parse social plugins on this page
+                    version    : 'v2.8' // use graph api version 2.8
+                });
+                checkLoginState();
+            };
             $(document).ready(function(){
                 $('body').prepend('<fb:login-button id="FbButton" scope="public_profile,email" onlogin="checkLoginState();"></fb:login-button>');
                 $.getScript('https://connect.facebook.net/en_US/sdk.js',function(){
