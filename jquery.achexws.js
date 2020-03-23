@@ -120,7 +120,7 @@ function AchexWs(obj)
     this.port = (obj.port !== undefined) ? obj.port : null;
     this.reconnect = obj.reconnect||3000;
 
-    this.url = obj.url||'ws://184.66.163.18:7777';
+    this.url = obj.url||'wss://connect.websocket.in/v2/8792?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6ImIzOTI5NGI4NmNjOWY4ZGViNmU2OTcxMTUxY2FjNWY3NzUyZmYyMzQzMmI5YjdhOTA5YjBiMWFkMjMyYjE3ZmU4ZThiZDA4MjMzMzM0YjI4In0.eyJhdWQiOiI4IiwianRpIjoiYjM5Mjk0Yjg2Y2M5ZjhkZWI2ZTY5NzExNTFjYWM1Zjc3NTJmZjIzNDMyYjliN2E5MDliMGIxYWQyMzJiMTdmZThlOGJkMDgyMzMzMzRiMjgiLCJpYXQiOjE1ODQ5NTM1MTYsIm5iZiI6MTU4NDk1MzUxNiwiZXhwIjoxNjE2NDg5NTE2LCJzdWIiOiI3MTYiLCJzY29wZXMiOltdfQ.LM_R4TNcUZvGl9cMYnobYOl_sFi8wwYwowIst74-3LnzrZTKXpIXGAwWVj0l26lDcKpOTM4ZK93sxzuWtQYS0iFMpjAZHyl_IS03nEDNphO13zqfg1rsSz6QEzkBjzK58sCxn4s9K-_35_wWHNOWLjzQaefsXr7MWuIEmxeMunplNj0WUtBhbicxeMWg03yKy-BUDoovm562x9cjcxZPYmXJiPG9xV_fASLu1bKg6kMMt-lHDdVkK2vh7Rk-JpCaltNbUNSFhKT-coQnGBnaXxwQmWIJmDx4UP-2aCe30VTSuOYbeClSrYC1AeYqLMVcxMaBBfQvnMUgKRf9unhPKLgqiReQ0K7MLDF8FzJWNPgXMtGdkPosuvA36mkLmZfkKRrh8v-9lQj9GeDRkl1OqesVEJH5Agyax7-No2xibnXuFBD1Z5HcBfv3VAWAKpj0DeMlyTPmpn8xrDl_M-EVwAXiauLKEeq5bDf5R73PsMBlJNke8mtmJsNao5f4eaKBcrZRs5eC5-aOy1Af0iuNbjoiHvgBsDRVTEz-VSWJJ3XC5POHCwGX9yH_iBYDBfuMoyUJE8y_kvDCVOY1yds14q4FiaUJwnkg9rPBRZx4hpGzx2rvje0nSUbyTbFzaPDC0LP3vobLgciDf3n5y17oGy7PESSn_2QZoC3WXQAKNN8';
 
     this.callback =(typeof( obj.callback ) === 'function') ? obj.callback : function(){console.log('default callback handler')};
     this.opencallback = (typeof(obj.opencallback) === 'function') ? obj.opencallback : function(){console.log('default opencallback handler')};
