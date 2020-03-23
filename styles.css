@@ -7,6 +7,7 @@ html {
 body {
     background: none transparent;
     color: #ededed;
+    font-family: 'Montserrat', sans-serif;
 }
 
 #the-video {
@@ -299,7 +300,7 @@ span.from>b.cmd-c {
     height: 20px;
     display: inline-block;
     text-decoration: none;
-    font-family: Monospace, Verdana, sans-serif;
+    font-family: 'Montserrat', sans-serif;
 }
 
 span.from .cmd-c:hover,
