@@ -9,13 +9,13 @@
     <meta name="mobile-web-app-capable" content="yes">
 
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+
     <link rel="icon" href="favicon.png">
     <link rel="apple-touch-icon" href="favicon.png">
     <link rel="stylesheet" href="bootstrap.min.css">
     <link rel="stylesheet" href="animate.min.css">
     <link rel="stylesheet" href="styles.css">
-    
+    <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
 
     <script src="JQ.js"></script>
     <script src="jquery.achexws.js"></script>
@@ -29,7 +29,19 @@
                 });
             }
         });
-        
+        var backgroundCs = [{
+            cname: 'black_bg'
+        }, {
+            cname: 'cinema_bg'
+        }, {
+            cname: 'brokkoli_bg'
+        }, {
+            cname: 'cosmos_bg'
+        }, {
+            cname: 'black-scales_bg'
+        }, {
+            cname: 'diagmonds_bg'
+        }];
 
         function setBg(newBgNum) {
             if (typeof(window.localStorage.currBg) === 'undefined' ||
@@ -59,9 +71,8 @@
                 <div id="users-title"><canvas id="logo" width="25" height="25"></canvas>Users</div>
             </div>
             <div>
-                <div id="chat_users"></div>
                 <div id="chat_window"></div>
-        
+                <div id="chat_users"></div>
                 <div id="chat_channels"></div>
             </div>
             <div id="chat-tooltip-container">
@@ -78,7 +89,7 @@
                 <button type="button" class="btn btn-light btn-lg round-btn" style="padding-left:10px;font-size:2.2em" onclick="javascript:TheVideoController.seek(10)" alt="/s +10">&#11246;</button>
                 <button type="button" class="btn btn-light btn-lg round-btn" style="padding-left:14px;font-size:2.2em" onclick="javascript:TheVideoController.volDn()" alt="/v -10">&#x2212;</button>
                 <button type="button" class="btn btn-light btn-lg round-btn" style="padding-left:14px;font-size:2.2em" onclick="javascript:TheVideoController.volUp()" alt="/v +10">&#x2b;</button>
-                
+                <button type="button" class="btn btn-light btn-sm round-btn" style="padding-left:11px;font-size:2.0em;font-weight:400;" onclick="javascript:TheVideoController.toggleControls()" alt="/c">&#129093;</button> &nbsp;
                 <input id="chat_input" type="text">&nbsp;<button type="button" class="btn btn-primary btn-sm" onclick="javascript:sendChat()">SEND</button>
                 <button type="button" class="btn btn-danger btn-sm" onclick="javascript:clearChatWindow()" alt="/cls">CLEAR</button>
                 <button type="button" class="btn btn-light btn-sm" onclick="javascript:TheVideoController.fullScreen()" alt="/fs">FULLSCREEN</button>
