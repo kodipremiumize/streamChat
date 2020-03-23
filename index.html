@@ -111,7 +111,7 @@
             console.log('connection opened');
 
             $.achex.send({
-                joinHub: default
+                joinHub: default1
             });
             refreshUserList();
 
@@ -134,7 +134,7 @@
 
         function cc() {
             $.achex.send({
-                toH: default,
+                toH: default1,
                 offline: username
             });
             console.log('closed'); // TODO htmlToSelf notification
@@ -153,10 +153,10 @@
                     c: $.achex.username
                 };
                 showUsers();
-            } else if (obj.leftHub == default) {
+            } else if (obj.leftHub == default1) {
                 delete users[obj.sID];
                 showUsers();
-            } else if (obj.toH && obj.toH == default) {
+            } else if (obj.toH && obj.toH == default1) {
                 if (obj.channel == channel && channel != '') {
                     // received chat
                     rcvChat(obj);
@@ -176,7 +176,7 @@
                     refreshTimeout = setTimeout(refreshUserList, 60000);
 
                     var to_send = {
-                        toH: default,
+                        toH: default1,
                         inchannel: channel,
                         myCurrSrc: !TheVideoController.video.currentSrc ? TheVideoController.video.currentSrc : escape(TheVideoController.video.currentSrc),
                         myCurrTime: TheVideoController.video.currentTime,
@@ -266,7 +266,7 @@
             } else if (obj.FROM && obj.FROM != username) {
                 if (obj.req == 'info') {
                     $.achex.send({
-                        toH: default,
+                        toH: default1,
                         inchannel: channel
                     });
                 } else {
@@ -383,7 +383,7 @@
                         TheVideoController.snap(q);
                         if (TheVideoController.snapDataUrl !== null) {
                             var to_send = {
-                                toH: default,
+                                toH: default1,
                                 snap: escape(TheVideoController.snapDataUrl)
                             };
                             $.achex.send(to_send);
@@ -413,7 +413,7 @@
                             TheVideoController.setCORS('use-credentials');
                             htmlToSelf('Video CORS policy set to use-credentials.');
                             break;
-                        default:
+                        default1:
                             TheVideoController.setCORS();
                             htmlToSelf('Video CORS policy removed.');
                     }
@@ -465,7 +465,7 @@
                     }
                 } else {
                     var to_send = {
-                        toH: default,
+                        toH: default1,
                         channel: channel,
                         msg: escape(input.value)
                     };
@@ -752,7 +752,7 @@
 
         function refreshUserList() {
             $.achex.send({
-                toH: default,
+                toH: default1,
                 online: username,
                 req: 'info'
             });
@@ -903,7 +903,7 @@
         function sendGif(img) {
             if (img) {
                 var to_send = {
-                    toH: default,
+                    toH: default1,
                     gif: img.src,
                     width: img.width,
                     height: img.height
@@ -936,7 +936,7 @@
                 // TODO: fetch video url from https://ymp4.download/?url='+encodeURIComponent('https://www.youtube.com/watch?v='+ytID[1])
                 //console.log(videoSrc);
                 var to_send = {
-                    toH: default,
+                    toH: default1,
                     videoSrc: escape(videoSrc.trim())
                 };
                 $.achex.send(to_send);
@@ -951,7 +951,7 @@
 
             if (subSrc !== null && subSrc.trim().length > 10 && (subSrc.trim().substr(0, 7) === 'http://' || subSrc.trim().substr(0, 8) === 'https://')) {
                 var to_send = {
-                    toH: default,
+                    toH: default1,
                     subSrc: escape(subSrc.trim())
                 };
                 $.achex.send(to_send);
@@ -971,7 +971,7 @@
                 if (TheVideoController.master) ts += 60 * 60 * 24;
 
                 var to_send = {
-                    toH: default,
+                    toH: default1,
                     timestamp: ts,
                     videoCurrSrc: !TheVideoController.video.currentSrc ? TheVideoController.video.currentSrc : escape(TheVideoController.video.currentSrc),
                     videoPaused: TheVideoController.video.paused,
@@ -1428,7 +1428,7 @@
                 loadWithWebTorrent(magnetLink, null, function(fid, n) {
                     if (fid !== null) {
                         var to_send = {
-                            toH: default,
+                            toH: default1,
                             magnetLink: escape(magnetLink.trim()),
                             fileId: fid
                         };
