@@ -98,8 +98,16 @@ body {
 }
 
 #chat_window {
-    text-align: right;
-    padding: 5px;
+    display: inline-block;   
+    border-radius: 7px;
+    box-shadow: 0 0 16px -1px rgba(0, 0, 0, 0.8)
+    word-wrap: break-word;
+    overflow-y: auto;
+    width: 300px;
+    text-align: left;
+    padding: 8px;
+    max-height: 400px;
+    vertical-align: bottom;
 }
 
 #chat_window>div {
