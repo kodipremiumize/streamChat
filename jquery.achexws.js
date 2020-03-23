@@ -145,10 +145,7 @@
             if ( !obj.password )
             {console.error('Achex API: Input object does not contain "password" parameter');}
         }
-        if( obj.facebook && this.achexFbAuthObj.authToken != '' && this.achexFbAuthObj.userID != '' && this.achexFbAuthObj.authfacebook != '')
-        {
-            this.clearToConnect = true;
-        }
+     
     
         if( obj.autoconnect === false ){
             this.clearToConnect=false;
@@ -200,11 +197,8 @@
                 console.log('opened ws "'+ self.url+'"');
                 self.logo.drawFitToCanvas({c1:'#090',c2:'#070'});
     
-                if( self.facebook )
-                {
-                    console.log('Achex Cloud - Facebook Auth');
-                    self.ws.send(JSON.stringify(self.achexFbAuthObj));
-                }else if(self.dbgSetID){
+
+                if(self.dbgSetID){
                     console.log('Achex Cloud - setID');
                     self.ws.send('{"setID":"streamApp@1013","passwd":"Test123"}');
                 }else{
@@ -332,95 +326,8 @@
         }
     }
     
-    /*==============================================*/
-    function DisplayFacebookLoginModal(display=true)
-    {
-        if( display )
-        {
-            if(!$('body').length) { document.write('<body></body>'); }
-            $('<div id="achexFbLoginModal"><div><canvas id="achexLogoFbLogin"></canvas><div class="acpltxt">Achex Platform Login</div><div id="achexfblogbutton"></div></div></div>').css({
-                backgroundColor: 'rgba(51,119,170,0.7)'
-                    ,position: 'fixed'
-                    ,top:0
-                    ,left:0
-                    ,zIndex: 99
-                    ,width:'100%'
-                    ,height:'100%'
-                    ,textAlign:'center'
-                    ,display:'table'
-            }).appendTo('body');
-            $('#achexFbLoginModal>div').css({
-                display:'table-cell'
-                    ,verticalAlign:'middle'
-            });
-            $('.acpltxt').css({
-                color:'#fff'
-                    ,fontFamily:'monospace'
-                    ,fontSize:'20px'
-                    ,margin:'10px'
-            });
-            var sym = new AchexLogo($('#achexLogoFbLogin')[0], Math.floor(window.innerWidth/2), null,10);
-            sym.drawFitToCanvas();
-            $('#FbButton').appendTo('#achexfblogbutton');
-        }else{
-            $('#achexFbLoginModal').remove();
-        }
-    }
-    
-    function checkLoginState() 
-    {
-        console.log('check fb login state');
-        FB.getLoginStatus(function(response){
-            if( response.status ==='connected' )
-            {
-                DisplayFacebookLoginModal(false);
-                $.achex.achexFbAuthObj = {
-                    authToken : response.authResponse.accessToken,
-                    userID : response.authResponse.userID
-                };
-                //this.achex = new AchexWs(obj);
-                // check response data
-    
-                FB.api('/me', function(response) {
-                    $.achex.achexFbAuthObj.authfacebook = response.name;
-                    var obj = jQuery.achexdata;
-                    obj.achexFbAuthObj = $.achex.achexFbAuthObj;
-                    this.achex = new AchexWs(obj);
-                });
-            }else{
-                DisplayFacebookLoginModal(true);
-            }
-        });
-    }
-    /*==============================================*/
+  
     
     
-    ( function ( $ ) {
-        $.achex = function(obj) {
-            if ( obj.facebook === true )
-            {
-                this.achexdata = obj;
-                //console.log('Getting script');
-                window.fbAsyncInit = function() {
-                    FB.init({
-                        appId      : '1765202877069955',
-                        cookie    : true,  // enable cookies to allow the server to access the session
-                        xfbml      : true,  // parse social plugins on this page
-                        version    : 'v2.8' // use graph api version 2.8
-                    });
-                    checkLoginState();
-                };
-                $(document).ready(function(){
-                    $('body').prepend('<fb:login-button id="FbButton" scope="public_profile,email" onlogin="checkLoginState();"></fb:login-button>');
-                    $.getScript('https://connect.facebook.net/en_US/sdk.js',function(){
-                            console.log('Got SCript');
-                            checkLoginState();
-                            });
-                });
-            }else{
-                this.achex = new AchexWs(obj);
-            }
-        };
-    }( jQuery ) );
     
     // vim:tabstop=4:sw=4:softtabstop=4:ft=cpp:expandtab fdm=marker foldmarker={{{,}}}
