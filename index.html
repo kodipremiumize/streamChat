@@ -71,13 +71,11 @@
                 <div id="users-title"><canvas id="logo" width="25" height="25"></canvas>Users</div>
             </div>
             <div>
-                <div id="chat_window"></div>
                 <div id="chat_users"></div>
+                <div id="chat_window"></div>
                 <div id="chat_channels"></div>
             </div>
-            <div id="chat-tooltip-container">
-                <div id="chat-tooltip"></div>
-            </div>
+   
             <div id="chat-input-container">
                 <div id="chat-input-left">
                     <a id="bookmarklet" onclick="alert(this.title);return false;" class="btn btn-md" title="Get video source URL from any website. Save this link as a bookmark via drag and drop or other method and run it on your favorite streaming site after a video started playing."
@@ -90,7 +88,7 @@
                 <button type="button" class="btn btn-light btn-lg round-btn" style="padding-left:14px;font-size:2.2em" onclick="javascript:TheVideoController.volDn()" alt="/v -10">&#x2212;</button>
                 <button type="button" class="btn btn-light btn-lg round-btn" style="padding-left:14px;font-size:2.2em" onclick="javascript:TheVideoController.volUp()" alt="/v +10">&#x2b;</button>
                 <button type="button" class="btn btn-light btn-sm round-btn" style="padding-left:11px;font-size:2.0em;font-weight:400;" onclick="javascript:TheVideoController.toggleControls()" alt="/c">&#129093;</button> &nbsp;
-                <input id="chat_input" type="text">&nbsp;<button type="button" class="btn btn-primary btn-sm" onclick="javascript:sendChat()">SEND</button>
+                <input id="chat_input" type="text" placeholder="Type "/help" for a list of commands;">&nbsp;<button type="button" class="btn btn-primary btn-sm" onclick="javascript:sendChat()">SEND</button>
                 <button type="button" class="btn btn-danger btn-sm" onclick="javascript:clearChatWindow()" alt="/cls">CLEAR</button>
                 <button type="button" class="btn btn-light btn-sm" onclick="javascript:TheVideoController.fullScreen()" alt="/fs">FULLSCREEN</button>
             </div>
