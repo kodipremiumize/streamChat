@@ -121,12 +121,7 @@
             });
             refreshUserList();
 
-            if (firstRun === true) {
-                htmlToSelf('Set a hosted video url or <a href="https://a-sync.github.io/BTorrent/" target="_blank">magnet uri</a> for the room player,<br>' +
-                    'then sync up with others and control the playback together :)<br>', 'Welcome');
-                firstRun = false;
-            }
-            htmlToSelf('You joined room <b>' + channel + '</b><br>List available commands with <b>/help</b><br>', 'Welcome');
+            
 
             lastUser = null;
         }
