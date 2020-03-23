@@ -120,7 +120,7 @@ function AchexWs(obj)
     this.port = (obj.port !== undefined) ? obj.port : null;
     this.reconnect = obj.reconnect||3000;
 
-    this.url = obj.url||'184.66.163.18:7777';
+    this.url = obj.url||'wss://184.66.163.18:7777';
 
     this.callback =(typeof( obj.callback ) === 'function') ? obj.callback : function(){console.log('default callback handler')};
     this.opencallback = (typeof(obj.opencallback) === 'function') ? obj.opencallback : function(){console.log('default opencallback handler')};
