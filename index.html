@@ -449,63 +449,13 @@
                         //+'<br><b>/master</b> '
                         , ' Available commands');
                     lastUser = null;
-                    htmlToSelf('<b>/help, /man</b> ' +
+                    htmlToSelf('<b>/help' +
                         '<br><b>/fullscreen, /fs</b> ' +
-                        '<br><b>/top</b> (toggle video on top) ' +
-                        '<br><b>/cb, /c</b> (toggle control bar) ' +
                         '<br><b>/clear, /cls</b> (clear screen) ' +
-                        '<br><b>/setvideo, /video</b> ' +
-                        '<br><b>/setmagnet, /magnet</b> ' +
-                        '<br><b>/subtitle, /sub</b> ' +
-                        '<br><b>/play, /pause, /p</b> (toggle play / pause) ' +
-                        '<br><b>/mute, /unmute, /m</b> (toggle mute) ' +
-                        '<br><b>/volume, /v</b> 0-100 (or &#177;int) ' +
-                        '<br><b>/seek, /s</b> m:s (or &#177;int) ', ' ' + cmdCharsList);
+
                     lastUser = null;
 
-                    var allCmdModeChars = ['?', ':', '/'];
-                    var replaceCmdCharsInHelp = function(e) {
-                        $('span.from .cmd-c.hovered').removeClass('hovered');
-                        $(this).addClass('hovered');
 
-                        var cmdElemList = document.querySelectorAll('i.sys-msg > b');
-                        for (var i = 0; i < cmdElemList.length; i++) {
-                            if (cmdElemList[i].textContent.length > 1) {
-                                var firstChar = cmdElemList[i].textContent.slice(0, 1);
-                                var currentCmdChar = allCmdModeChars.indexOf(firstChar);
-
-                                //console.log(currentCmdChar, cmdElemList[i].textContent, firstChar, allCmdModeChars[currentCmdChar]);
-                                if (currentCmdChar !== -1) {
-                                    var r = new RegExp('\\' + allCmdModeChars[currentCmdChar], 'g');
-                                    cmdElemList[i].textContent = cmdElemList[i].textContent.replace(r, this.textContent);
-                                }
-                            }
-                        }
-                    }
-
-                    var cmdCharElemList = document.querySelectorAll('span.from > b.cmd-c');
-                    for (var i = 0; i < cmdCharElemList.length; i++) {
-                        cmdCharElemList[i].parentNode.style.textDecoration = 'none';
-                        cmdCharElemList[i].onmouseover = replaceCmdCharsInHelp;
-                    }
-                } else {
-                    var to_send = {
-                        toH: bcChannel,
-                        channel: channel,
-                        msg: escape(input.value)
-                    };
-                    $.achex.send(to_send);
-                    rcvChat(Object.assign({
-                        FROM: $.achex.username,
-                        sID: $.achex.sid
-                    }, to_send));
-                    //console.log(to_send);
-                }
-                addToChatHistory(input.value);
-                currHistoryEntry = null;
-                input.value = '';
-            }
-        }
 
         function setRoom(str) {
             window.location.hash = '#' + str.replace(/\W+/g, "");
