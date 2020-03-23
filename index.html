@@ -56,6 +56,7 @@
     <script>
         //TODO: remove messages after time delay
         var users = [];
+        var test = 0;
         var channels = [];
         var channel = window.location.hash.length > 1 ? window.location.hash.replace(/\W+/g, "") : 'lobby';
         if (window.location.hash.length < 2) window.location.hash = channel;
@@ -465,14 +466,16 @@
                 msg: escape(str)
             });
         }
-
+        
+        
         function rcvChat(obj, html) {
             if (lastUser != obj.sID) $('#chat_window').append(createChatMessage(obj, html));
            
             else $('#chat_window>div:last-child').append('<br>').append(createChatMessage(obj, html));
             //new
-            var test = $(document).height() - $("#chat_window>div:last-child").scrollTop();
-            $("#chat_window").scrollTop(test)
+            test = $(document).height() - $("#chat_window>div:last-child").scrollTop();
+            $("#chat_window").scrollTop(test);
+            $("#chat_window>div:last-child").scrollTop(test);
 
                 
            
