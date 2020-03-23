@@ -437,8 +437,20 @@
                         '<br><b>/sticklate</b> (translate via giphy) ' +
                         '<br><b>/room, /r</b> (switch to room) ' +
                         '<br><b>/snap</b> 0-100 (quality) ' 
-                        '<b>/help</b> ' +
+                        //+'<br><b>/master</b> '
+                        , ' Available commands');
+                    lastUser = null;
+                    htmlToSelf('<b>/help</b> ' +
                         '<br><b>/fullscreen, /fs</b> ' +
+                        '<br><b>/top</b> (toggle video on top) ' +
+                        '<br><b>/cb, /c</b> (toggle control bar) ' +
+                        '<br><b>/clear, /cls</b> (clear screen) ' +
+                        '<br><b>/setvideo, /video</b> ' +
+                        '<br><b>/setmagnet, /magnet</b> ' +
+                        '<br><b>/subtitle, /sub</b> ' +
+                        '<br><b>/play, /pause, /p</b> (toggle play / pause) ' +
+                        '<br><b>/mute, /unmute, /m</b> (toggle mute) ' +
+                        '<br><b>/volume, /v</b> 0-100 (or &#177;int) ' +
                         '<br><b>/seek, /s</b> m:s (or &#177;int) ', ' ' + cmdCharsList);
                     lastUser = null;
 
