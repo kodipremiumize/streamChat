@@ -102,14 +102,13 @@ body {
 }
 
 #chat_window>div {
-    display: inline-block;
-    background: linear-gradient(135deg, rgba(0, 0, 0, 0.40) 10%, rgba(20, 20, 20, 0.80) 100%);
+    display: inline-block;   
     border-radius: 7px;
     box-shadow: 0 0 16px -1px rgba(0, 0, 0, 0.8)
     word-wrap: break-word;
     overflow-y: auto;
-    width: 150px;
-    text-align: right;
+    width: 3000px;
+    text-align: left;
     padding: 8px;
     max-height: 400px;
     vertical-align: bottom;
