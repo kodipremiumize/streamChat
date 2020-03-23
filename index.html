@@ -435,9 +435,6 @@
                     //console.log(to_send);
                 }
                 addToChatHistory(input.value);
-                //new
-                $("#chat_window>div:last-child").scrollTop($("#chat_window>div:last-child")[0].scrollHeight);
-                //
                 currHistoryEntry = null;
                 input.value = '';
             }
@@ -473,7 +470,9 @@
             if (lastUser != obj.sID) $('#chat_window').append(createChatMessage(obj, html));
            
             else $('#chat_window>div:last-child').append('<br>').append(createChatMessage(obj, html));
-            input.scroll = input.scrollHeight;
+            //new
+            $("#chat_window>div:last-child").scrollTop($("#chat_window>div:last-child")[0].scrollHeight);
+                
            
         }
 
