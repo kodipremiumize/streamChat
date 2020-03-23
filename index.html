@@ -17,7 +17,44 @@
     <script src="JQ.js"></script>
     <script src="jquery.achexws.js"></script>
     <script src="webtorrent.min.js"></script>
+    <script>
+        $.fn.extend({
+            animateCss: function(animationName) {
+                var animationEnd = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
+                this.addClass('animated ' + animationName).one(animationEnd, function() {
+                    $(this).removeClass('animated ' + animationName);
+                });
+            }
+        });
+        var backgroundCs = [{
+            cname: 'black_bg'
+        }, {
+            cname: 'cinema_bg'
+        }, {
+            cname: 'brokkoli_bg'
+        }, {
+            cname: 'cosmos_bg'
+        }, {
+            cname: 'black-scales_bg'
+        }, {
+            cname: 'diagmonds_bg'
+        }];
 
+        function setBg(newBgNum) {
+            if (typeof(window.localStorage.currBg) === 'undefined' ||
+                isNaN(window.localStorage.currBg) ||
+                typeof(backgroundCs[window.localStorage.currBg]) !== 'object') {
+
+                window.localStorage.currBg = 1;
+            }
+
+            if (isNaN(newBgNum) || typeof(backgroundCs[newBgNum]) !== 'object') {
+                newBgNum = window.localStorage.currBg;
+            } else window.localStorage.currBg = newBgNum;
+
+            document.getElementsByTagName('html')[0].className = backgroundCs[newBgNum].cname;
+        }
+    </script>
 
 </head>
 
@@ -60,7 +97,7 @@
         var channels = [];
         var channel = window.location.hash.length > 1 ? window.location.hash.replace(/\W+/g, "") : 'lobby';
         if (window.location.hash.length < 2) window.location.hash = channel;
-        var default1 = 'cinema-' + channel;
+        var bcChannel = 'cinema-' + channel;
 
         var username = window.localStorage.username || '';
         var firstRun = false;
@@ -75,7 +112,7 @@
             console.log('connection opened');
 
             $.achex.send({
-                joinHub: default1
+                joinHub: bcChannel
             });
             refreshUserList();
 
@@ -98,7 +135,7 @@
 
         function cc() {
             $.achex.send({
-                toH: default1,
+                toH: bcChannel,
                 offline: username
             });
             console.log('closed'); // TODO htmlToSelf notification
@@ -117,10 +154,10 @@
                     c: $.achex.username
                 };
                 showUsers();
-            } else if (obj.leftHub == default1) {
+            } else if (obj.leftHub == bcChannel) {
                 delete users[obj.sID];
                 showUsers();
-            } else if (obj.toH && obj.toH == default1) {
+            } else if (obj.toH && obj.toH == bcChannel) {
                 if (obj.channel == channel && channel != '') {
                     // received chat
                     rcvChat(obj);
@@ -140,7 +177,7 @@
                     refreshTimeout = setTimeout(refreshUserList, 60000);
 
                     var to_send = {
-                        toH: default1,
+                        toH: bcChannel,
                         inchannel: channel,
                         myCurrSrc: !TheVideoController.video.currentSrc ? TheVideoController.video.currentSrc : escape(TheVideoController.video.currentSrc),
                         myCurrTime: TheVideoController.video.currentTime,
@@ -230,7 +267,7 @@
             } else if (obj.FROM && obj.FROM != username) {
                 if (obj.req == 'info') {
                     $.achex.send({
-                        toH: default1,
+                        toH: bcChannel,
                         inchannel: channel
                     });
                 } else {
@@ -256,8 +293,8 @@
 
         $.achex({
             //dbg: true,
-            username: "streamApp@1013",
-            password: "Test123",
+            username: username,
+            password: window.localStorage.password || '*',
             reconnect: 3000,
             logo: {
                 canvas: 'logo',
@@ -347,7 +384,7 @@
                         TheVideoController.snap(q);
                         if (TheVideoController.snapDataUrl !== null) {
                             var to_send = {
-                                toH: default1,
+                                toH: bcChannel,
                                 snap: escape(TheVideoController.snapDataUrl)
                             };
                             $.achex.send(to_send);
@@ -377,7 +414,7 @@
                             TheVideoController.setCORS('use-credentials');
                             htmlToSelf('Video CORS policy set to use-credentials.');
                             break;
-                        default1:
+                        default:
                             TheVideoController.setCORS();
                             htmlToSelf('Video CORS policy removed.');
                     }
@@ -429,7 +466,7 @@
                     }
                 } else {
                     var to_send = {
-                        toH: default1,
+                        toH: bcChannel,
                         channel: channel,
                         msg: escape(input.value)
                     };
@@ -716,7 +753,7 @@
 
         function refreshUserList() {
             $.achex.send({
-                toH: default1,
+                toH: bcChannel,
                 online: username,
                 req: 'info'
             });
@@ -867,7 +904,7 @@
         function sendGif(img) {
             if (img) {
                 var to_send = {
-                    toH: default1,
+                    toH: bcChannel,
                     gif: img.src,
                     width: img.width,
                     height: img.height
@@ -900,7 +937,7 @@
                 // TODO: fetch video url from https://ymp4.download/?url='+encodeURIComponent('https://www.youtube.com/watch?v='+ytID[1])
                 //console.log(videoSrc);
                 var to_send = {
-                    toH: default1,
+                    toH: bcChannel,
                     videoSrc: escape(videoSrc.trim())
                 };
                 $.achex.send(to_send);
@@ -915,7 +952,7 @@
 
             if (subSrc !== null && subSrc.trim().length > 10 && (subSrc.trim().substr(0, 7) === 'http://' || subSrc.trim().substr(0, 8) === 'https://')) {
                 var to_send = {
-                    toH: default1,
+                    toH: bcChannel,
                     subSrc: escape(subSrc.trim())
                 };
                 $.achex.send(to_send);
@@ -935,7 +972,7 @@
                 if (TheVideoController.master) ts += 60 * 60 * 24;
 
                 var to_send = {
-                    toH: default1,
+                    toH: bcChannel,
                     timestamp: ts,
                     videoCurrSrc: !TheVideoController.video.currentSrc ? TheVideoController.video.currentSrc : escape(TheVideoController.video.currentSrc),
                     videoPaused: TheVideoController.video.paused,
@@ -1362,7 +1399,7 @@
                 reader.onload = function(event) {
                     //console.log(event);
                     var to_send = {
-                        toH: default1,
+                        toH: bcChannel,
                         snap: escape(event.target.result)
                     };
                     $.achex.send(to_send);
@@ -1392,7 +1429,7 @@
                 loadWithWebTorrent(magnetLink, null, function(fid, n) {
                     if (fid !== null) {
                         var to_send = {
-                            toH: default1,
+                            toH: bcChannel,
                             magnetLink: escape(magnetLink.trim()),
                             fileId: fid
                         };
