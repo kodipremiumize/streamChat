@@ -41,7 +41,6 @@
         }];
 
         function setBg(newBgNum) {
-            if (typeof(window.localStorage.currBg) === 'undefined' ||
                 isNaN(window.localStorage.currBg) ||
                 typeof(backgroundCs[window.localStorage.currBg]) !== 'object') {
 
@@ -97,7 +96,7 @@
         var channels = [];
         var channel = window.location.hash.length > 1 ? window.location.hash.replace(/\W+/g, "") : 'lobby';
         if (window.location.hash.length < 2) window.location.hash = channel;
-        var default = 'cinema-' + channel;
+        var default1 = 'cinema-' + channel;
 
         var username = window.localStorage.username || '';
         var firstRun = false;
