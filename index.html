@@ -97,7 +97,7 @@
         var channels = [];
         var channel = window.location.hash.length > 1 ? window.location.hash.replace(/\W+/g, "") : 'lobby';
         if (window.location.hash.length < 2) window.location.hash = channel;
-        var bcChannel = 'cinema-' + channel;
+        var default = 'cinema-' + channel;
 
         var username = window.localStorage.username || '';
         var firstRun = false;
@@ -135,7 +135,7 @@
 
         function cc() {
             $.achex.send({
-                toH: bcChannel,
+                toH: default,
                 offline: username
             });
             console.log('closed'); // TODO htmlToSelf notification
@@ -154,10 +154,10 @@
                     c: $.achex.username
                 };
                 showUsers();
-            } else if (obj.leftHub == bcChannel) {
+            } else if (obj.leftHub == default) {
                 delete users[obj.sID];
                 showUsers();
-            } else if (obj.toH && obj.toH == bcChannel) {
+            } else if (obj.toH && obj.toH == default) {
                 if (obj.channel == channel && channel != '') {
                     // received chat
                     rcvChat(obj);
@@ -177,7 +177,7 @@
                     refreshTimeout = setTimeout(refreshUserList, 60000);
 
                     var to_send = {
-                        toH: bcChannel,
+                        toH: default,
                         inchannel: channel,
                         myCurrSrc: !TheVideoController.video.currentSrc ? TheVideoController.video.currentSrc : escape(TheVideoController.video.currentSrc),
                         myCurrTime: TheVideoController.video.currentTime,
@@ -267,7 +267,7 @@
             } else if (obj.FROM && obj.FROM != username) {
                 if (obj.req == 'info') {
                     $.achex.send({
-                        toH: bcChannel,
+                        toH: default,
                         inchannel: channel
                     });
                 } else {
@@ -384,7 +384,7 @@
                         TheVideoController.snap(q);
                         if (TheVideoController.snapDataUrl !== null) {
                             var to_send = {
-                                toH: bcChannel,
+                                toH: default,
                                 snap: escape(TheVideoController.snapDataUrl)
                             };
                             $.achex.send(to_send);
@@ -466,7 +466,7 @@
                     }
                 } else {
                     var to_send = {
-                        toH: bcChannel,
+                        toH: default,
                         channel: channel,
                         msg: escape(input.value)
                     };
@@ -753,7 +753,7 @@
 
         function refreshUserList() {
             $.achex.send({
-                toH: bcChannel,
+                toH: default,
                 online: username,
                 req: 'info'
             });
@@ -904,7 +904,7 @@
         function sendGif(img) {
             if (img) {
                 var to_send = {
-                    toH: bcChannel,
+                    toH: default,
                     gif: img.src,
                     width: img.width,
                     height: img.height
@@ -937,7 +937,7 @@
                 // TODO: fetch video url from https://ymp4.download/?url='+encodeURIComponent('https://www.youtube.com/watch?v='+ytID[1])
                 //console.log(videoSrc);
                 var to_send = {
-                    toH: bcChannel,
+                    toH: default,
                     videoSrc: escape(videoSrc.trim())
                 };
                 $.achex.send(to_send);
@@ -952,7 +952,7 @@
 
             if (subSrc !== null && subSrc.trim().length > 10 && (subSrc.trim().substr(0, 7) === 'http://' || subSrc.trim().substr(0, 8) === 'https://')) {
                 var to_send = {
-                    toH: bcChannel,
+                    toH: default,
                     subSrc: escape(subSrc.trim())
                 };
                 $.achex.send(to_send);
@@ -972,7 +972,7 @@
                 if (TheVideoController.master) ts += 60 * 60 * 24;
 
                 var to_send = {
-                    toH: bcChannel,
+                    toH: default,
                     timestamp: ts,
                     videoCurrSrc: !TheVideoController.video.currentSrc ? TheVideoController.video.currentSrc : escape(TheVideoController.video.currentSrc),
                     videoPaused: TheVideoController.video.paused,
@@ -1399,7 +1399,7 @@
                 reader.onload = function(event) {
                     //console.log(event);
                     var to_send = {
-                        toH: bcChannel,
+                        toH: default,
                         snap: escape(event.target.result)
                     };
                     $.achex.send(to_send);
@@ -1429,7 +1429,7 @@
                 loadWithWebTorrent(magnetLink, null, function(fid, n) {
                     if (fid !== null) {
                         var to_send = {
-                            toH: bcChannel,
+                            toH: default,
                             magnetLink: escape(magnetLink.trim()),
                             fileId: fid
                         };
