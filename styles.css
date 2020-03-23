@@ -343,6 +343,12 @@ i.sys-msg>b:hover {
     z-index: -10;
 }
 
+@media only screen and (min-width: 768px){
+.mobile{
+	display:none;
+}
+}
+
 @media only screen and (max-width: 768px){
 	#the-video {
     position: relative;
@@ -386,7 +392,7 @@ i.sys-msg>b:hover {
     color: #ededed;
 }
 	
-.skip{
+.desktop{
 	display:none;
 }
 
