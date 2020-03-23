@@ -470,11 +470,11 @@
         function rcvChat(obj, html) {
             if (lastUser != obj.sID) $('#chat_window').append(createChatMessage(obj, html));
             //new
-            ("#chat_window>div:last-child").scrollTop($("#chat_window>div:last-child")[0].scrollHeight);
+            $("#chat_window>div:last-child").scrollTop($("#chat_window>div:last-child")[0].scrollHeight);
             else $('#chat_window>div:last-child').append('<br>').append(createChatMessage(obj, html));
             input.scroll = input.scrollHeight;
             //new
-            ("#chat_window>div:last-child").scrollTop($("#chat_window>div:last-child")[0].scrollHeight);
+            $("#chat_window>div:last-child").scrollTop($("#chat_window>div:last-child")[0].scrollHeight);
         }
 
         function rcvWhisper(obj) {
@@ -513,7 +513,7 @@
                 }
             } else msg.innerHTML = html;
             //new
-            ("#chat_window>div:last-child").scrollTop($("#chat_window>div:last-child")[0].scrollHeight);
+            $("#chat_window>div:last-child").scrollTop($("#chat_window>div:last-child")[0].scrollHeight);
 
             if (obj.time != null) {
                 var time = document.createElement('span');
