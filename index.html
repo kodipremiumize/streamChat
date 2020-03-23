@@ -435,7 +435,9 @@
                     //console.log(to_send);
                 }
                 addToChatHistory(input.value);
-                
+                //new
+                $("#chat_window>div:last-child").scrollTop($("#chat_window>div:last-child")[0].scrollHeight);
+                //
                 currHistoryEntry = null;
                 input.value = '';
             }
