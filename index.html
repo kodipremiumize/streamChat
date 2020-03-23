@@ -1094,7 +1094,7 @@
                 };
 
                 this.video.onemptied = function(e) {
-                    $('#set-video').animateCss('shake');
+                    
                 };
 
                 //vid.ontimeupdate = function(e) {};
@@ -1109,7 +1109,7 @@
                     //TheVideoController.showControls();
 
                     if (window.localStorage.volume) this.volume = window.localStorage.volume;
-                    $('#pp-btn').animateCss('bounce');
+                   
 
                     if (this.currentSrc.slice(0, 5) != 'blob:') window.localStorage.lastLoadedSrc = this.currentSrc;
                 };
