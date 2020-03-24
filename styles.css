@@ -395,9 +395,7 @@ i.sys-msg>b:hover {
     color: #ededed;
 }
 	
-.desktop{
-	display:none;
-}
+
 	
 #chat_window {
     display: inline-block;   
@@ -415,8 +413,4 @@ i.sys-msg>b:hover {
 
 }
 
-@media screen and (max-height: 600px) and (orientation: landscape) {
-    .desktophide{
-	display:none !important;
-}
-}
+
