@@ -44,11 +44,13 @@ body {
     padding-top: 10px;
     font-weight: bold;
     font-size:14px;
+    padding-left: 10px;
 }
 
 .msg {
     color: #ededed;
     padding: 5px;
+    padding-left: 10px;
     font-size:13px;
     /*display: inline-block;*/
 }
@@ -101,6 +103,16 @@ body {
     font-weight: bold;
     color: #fafafa;
     padding: 5px;
+}
+
+#chat_window{
+    display: inline-block;   
+    word-wrap: break-word;
+    overflow-y: auto;
+    width: 294px;
+    text-align: left;
+    max-height: 400px;
+    margin-bottom:5px
 }
 
 #chat_window>div {
