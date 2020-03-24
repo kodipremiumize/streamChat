@@ -112,7 +112,7 @@ body {
     width: 294px;
     text-align: left;
     max-height: 400px;
-    margin-bottom:5px
+    margin-bottom:5px;
     float:right;
 }
 
@@ -121,7 +121,7 @@ body {
     background-color: #61616182;
     text-shadow: 2px 2px 2px #040404;
     border-radius: 5px;
-    box-shadow: 0 0 16px -1px rgba(0, 0, 0, 0.8)
+    box-shadow: 0 0 16px -1px rgba(0, 0, 0, 0.8);
     word-wrap: break-word;
     overflow-y: auto;
     width: 294px;
