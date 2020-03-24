@@ -23,6 +23,7 @@ body {
     width: 1280px;
     height: 720px;
     max-height: calc(100vh - 77px);
+    z-index:-1;
 }
 
 #the-video.full {
