@@ -415,9 +415,8 @@ i.sys-msg>b:hover {
 
 }
 
-@media screen and (max-device-width: 800px) and (orientation: landscape) {
+@media screen and (max-height: 600px) and (orientation: landscape) {
     .desktop{
 	display:none !important;
 }
 }
-
