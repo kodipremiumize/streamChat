@@ -102,24 +102,6 @@ body {
     padding: 5px;
 }
 
-#chat_window {
-    display: inline-block;   
-    background-color: #61616182;
-    text-shadow: 2px 2px 2px #040404;
-    border-radius: 5px;
-    box-shadow: 0 0 16px -1px rgba(0, 0, 0, 0.8)
-    word-wrap: break-word;
-    overflow-y: auto;
-    width: 300px;
-    text-align: left;
-    padding-bottom: 5px;
-    padding-top: 5px;
-    color: #efefef;
-    float:right;
-    max-height: 400px;
-    vertical-align: bottom;
-}
-
 #chat_window>div {
     display: inline-block;   
     background-color: #61616182;
@@ -128,7 +110,7 @@ body {
     box-shadow: 0 0 16px -1px rgba(0, 0, 0, 0.8)
     word-wrap: break-word;
     overflow-y: auto;
-    width: 300px;
+    width: 294px;
     text-align: left;
     padding-bottom: 5px;
     padding-top: 5px;
@@ -136,6 +118,7 @@ body {
     float:right;
     max-height: 400px;
     vertical-align: bottom;
+    margin-bottom:5px
 }
 
 .msg img {
@@ -403,7 +386,7 @@ i.sys-msg>b:hover {
     color: #ededed;
 }
 		
-#chat_window {
+#chat_window>div {
     display: inline-block;   
     background-color: #61616182;
     text-shadow: 2px 2px 2px #040404;
@@ -411,13 +394,14 @@ i.sys-msg>b:hover {
     box-shadow: 0 0 16px -1px rgba(0, 0, 0, 0.8)
     word-wrap: break-word;
     overflow-y: auto;
-    width: 300px;
+    width: 294px;
     text-align: left;
     margin-bottom: 40px;
     padding-bottom: 5px;
     padding-top: 5px;
+    color: #efefef;
     float:right;
-    max-height: 200px;
+    max-height: 400px;
     vertical-align: bottom;
 }
 }
