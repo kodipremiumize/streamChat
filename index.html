@@ -897,7 +897,7 @@
 
             if (videoSrc !== null && videoSrc.trim().length > 10 && (videoSrc.trim().substr(0, 7) === 'http://' || videoSrc.trim().substr(0, 8) === 'https://')) {
                 var ytID = videoSrc.trim().match(/(?:youtube(?:-nocookie)?\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/);
-                if (ytID != null) return alert('Youtube links are not supported at the moment...'); videoSrc = 'https://www.youtube.com/watch?v='+ytID[1];
+                if (ytID != null) return alert('Youtube links are not supported at the moment...');// videoSrc = 'https://www.youtube.com/watch?v='+ytID[1];
                 // TODO: fetch video url from https://ymp4.download/?url='+encodeURIComponent('https://www.youtube.com/watch?v='+ytID[1])
                 //console.log(videoSrc);
                 var to_send = {
